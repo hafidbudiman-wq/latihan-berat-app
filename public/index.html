@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latihan Berat App</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">🏋️ Personal workout planner</p>
+        <h1>Rancang latihan yang pas untuk berat, tinggi, tujuan otot, dan kesehatanmu.</h1>
+        <p class="lead">Masukkan data dasar, lalu aplikasi memberi estimasi BMI, kalori, protein, jadwal latihan, dan gerakan prioritas. Ini bukan pengganti dokter/pelatih, tapi cocok sebagai panduan awal yang aman.</p>
+      </div>
+      <div class="hero-card"><span class="big-icon">💚</span><strong>Fokus sehat</strong><span>Teknik benar, progres perlahan, cukup istirahat, dan nutrisi konsisten.</span></div>
+    </section>
+
+    <section class="grid">
+      <form class="panel input-panel" id="planner-form">
+        <h2>Data kamu</h2>
+        <label>⚖️ Berat badan (kg)<input id="weight" type="number" value="75" min="30" max="250" /></label>
+        <label>📏 Tinggi badan (cm)<input id="height" type="number" value="172" min="120" max="230" /></label>
+        <label>🫀 Usia<input id="age" type="number" value="30" min="15" max="80" /></label>
+        <label>🎯 Tujuan<select id="goal"><option value="muscle">Bangun Muscle</option><option value="strength">Tambah Kekuatan</option><option value="health">Kesehatan & Postur</option></select></label>
+        <label>💪 Level<select id="level"><option value="pemula">Pemula</option><option value="menengah">Menengah</option><option value="lanjut">Lanjut</option></select></label>
+        <label>📅 Hari latihan/minggu<input id="days" type="range" value="4" min="2" max="6" /><b id="days-label">4 hari</b></label>
+      </form>
+
+      <section class="panel result-panel">
+        <h2>Rekomendasi awal</h2>
+        <div class="stats">
+          <article><span>BMI</span><strong id="bmi">-</strong><small id="bmi-label">-</small></article>
+          <article><span>Kalori target</span><strong id="calories">-</strong><small>kkal/hari</small></article>
+          <article><span>Protein</span><strong id="protein">-</strong><small>per hari</small></article>
+          <article><span>Durasi</span><strong id="duration">-</strong><small>per sesi</small></article>
+        </div>
+        <p class="note" id="note"></p>
+        <div class="two-col">
+          <div><h3>Jadwal mingguan</h3><ol id="schedule"></ol></div>
+          <div><h3>Gerakan prioritas</h3><ul id="exercises"></ul></div>
+        </div>
+        <div class="nutrition"><span>🥗</span><div><h3>Nutrisi & progres</h3><p id="nutrition-copy"></p></div></div>
+      </section>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
