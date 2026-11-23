@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import type { ChatMessage } from "@/lib/coach";
+import { ruleBasedReply, type ChatMessage } from "@/lib/coach";
+
+// Di GitHub Pages tidak ada server, jadi coach jalan offline di browser.
+const STATIC = process.env.NEXT_PUBLIC_STATIC_EXPORT === "1";
 import { useProfile, useSessions } from "@/lib/storage";
 
 const STARTERS = [
@@ -31,6 +34,12 @@ export default function CoachPage() {
     setMessages(next);
     setInput("");
     setBusy(true);
+    if (STATIC) {
+      setMode("offline");
+      setMessages([...next, { role: "assistant", content: ruleBasedReply(content, profile, sessions) }]);
+      setBusy(false);
+      return;
+    }
     try {
       const res = await fetch("/api/coach", {
         method: "POST",

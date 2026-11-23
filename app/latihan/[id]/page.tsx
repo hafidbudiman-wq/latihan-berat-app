@@ -1,12 +1,18 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getExercise, toSummary } from "@/lib/exercises";
+import { allIds, getExercise, toSummary } from "@/lib/exercises";
 import { muscleLabel } from "@/lib/muscles";
 import { CATEGORY_LABELS, EQUIPMENT_LABELS, LEVEL_LABELS, imageUrl, label } from "@/lib/labels";
 import BodyMap from "@/components/BodyMap";
 import AddToSessionButton from "@/components/AddToSessionButton";
 
 type P = Promise<{ id: string }>;
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return allIds().map((id) => ({ id }));
+}
 
 export async function generateMetadata({ params }: { params: P }) {
   const e = getExercise((await params).id);

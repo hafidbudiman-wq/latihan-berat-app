@@ -22,30 +22,10 @@ export function toSummary(e: Exercise): ExerciseSummary {
   };
 }
 
-export interface ExerciseQuery {
-  q?: string;
-  muscle?: string;
-  equipment?: string;
-  level?: string;
-  limit?: number;
+export function allSummaries(): ExerciseSummary[] {
+  return EXERCISES.map(toSummary);
 }
 
-export function searchExercises({
-  q,
-  muscle,
-  equipment,
-  level,
-  limit = 60,
-}: ExerciseQuery): { total: number; items: ExerciseSummary[] } {
-  const terms = (q ?? "").toLowerCase().split(/\s+/).filter(Boolean);
-  const matches = EXERCISES.filter((e) => {
-    if (muscle && !e.primaryMuscles.includes(muscle)) return false;
-    if (equipment && e.equipment !== equipment) return false;
-    if (level && e.level !== level) return false;
-    const name = e.name.toLowerCase();
-    return terms.every((t) => name.includes(t));
-  });
-  return { total: matches.length, items: matches.slice(0, limit).map(toSummary) };
+export function allIds(): string[] {
+  return EXERCISES.map((e) => e.id);
 }
-
-export const EQUIPMENT_OPTIONS = [...new Set(EXERCISES.map((e) => e.equipment))].sort();

@@ -11,7 +11,13 @@ Aplikasi web (bisa dibuka di HP) untuk latihan beban:
 
 Data latihan pengguna di versi ini disimpan di browser (localStorage). Bisa diekspor ke JSON dari halaman Riwayat.
 
-## Menjalankan
+## Coba langsung (tanpa install)
+
+Buka **https://hafidbudiman-wq.github.io/latihan-berat-app/** di HP atau laptop.
+
+Versi ini dibangun otomatis oleh GitHub Actions (`.github/workflows/pages.yml`) setiap ada push ke `main`. Karena GitHub Pages tidak punya server, AI coach di sana jalan mode offline (berbasis aturan). Semua fitur lain sama.
+
+## Menjalankan di komputer
 
 ```bash
 npm install
@@ -19,7 +25,7 @@ cp .env.example .env.local   # opsional: isi ANTHROPIC_API_KEY untuk AI coach
 npm run dev                  # buka http://localhost:3000
 ```
 
-Perintah lain: `npm test` (unit test logika progresi & coach), `npm run typecheck`, `npm run build`, `npm run import:exercises` (unduh ulang dataset latihan).
+Perintah lain: `NEXT_PUBLIC_STATIC_EXPORT=1 npm run build` (build statis ke folder `out/`, hapus dulu `app/api`), `npm test` (unit test logika progresi & coach), `npm run typecheck`, `npm run build`, `npm run import:exercises` (unduh ulang dataset latihan).
 
 Variabel lingkungan:
 
