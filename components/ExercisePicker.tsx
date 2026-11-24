@@ -1,4 +1,5 @@
 "use client";
+import Portal from "./Portal";
 import { useMemo, useState } from "react";
 import type { ExerciseSummary } from "@/lib/types";
 import { muscleLabel } from "@/lib/muscles";
@@ -9,6 +10,7 @@ export default function ExercisePicker({ onPick, onClose }: { onPick: (e: Exerci
   const { items: all } = useExerciseIndex();
   const items = useMemo(() => (all ? filterExercises(all, { q }).slice(0, 30) : []), [all, q]);
   return (
+    <Portal>
     <div className="fixed inset-0 z-30 flex items-end justify-center bg-black/60 sm:items-center" onClick={onClose}>
       <div className="card max-h-[80vh] w-full max-w-lg space-y-3 overflow-hidden rounded-b-none sm:rounded-b-2xl" onClick={(e) => e.stopPropagation()}>
         <div className="flex gap-2">
@@ -34,5 +36,6 @@ export default function ExercisePicker({ onPick, onClose }: { onPick: (e: Exerci
         </ul>
       </div>
     </div>
+    </Portal>
   );
 }

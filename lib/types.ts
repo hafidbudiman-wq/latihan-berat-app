@@ -23,6 +23,8 @@ export interface ExerciseSummary {
   primaryMuscles: string[];
   secondaryMuscles: string[];
   image: string | null;
+  /** Semua frame gerakan (posisi awal & akhir) untuk demo animasi. */
+  frames: string[];
 }
 
 export interface SetEntry {

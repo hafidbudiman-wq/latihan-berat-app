@@ -10,13 +10,13 @@ export default function ProgramPage() {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-2xl font-bold">Program Latihan</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight">Program <span className="text-gradient">Latihan</span></h1>
         <p className="text-sm text-muted">
           Pilih program, lalu tekan Mulai. Beban awal diisi otomatis dari riwayat kamu (progressive overload).
         </p>
       </div>
-      {PROGRAMS.map((p) => (
-        <section key={p.id} className="card space-y-3">
+      {PROGRAMS.map((p, pi) => (
+        <section key={p.id} className="card animate-in space-y-3" style={{ "--d": `${pi * 120}ms` } as React.CSSProperties}>
           <div>
             <h2 className="text-lg font-semibold">{p.name}</h2>
             <p className="text-sm text-muted">{p.daysPerWeek}x / minggu · {p.description}</p>
@@ -28,7 +28,7 @@ export default function ProgramPage() {
                 return e ? [{ ...x, exercise: toSummary(e) }] : [];
               });
               return (
-                <div key={d.key} className="rounded-xl border border-line p-3">
+                <div key={d.key} className="card-hover rounded-xl border border-line bg-white/[0.02] p-3">
                   <div className="mb-2 flex items-center justify-between gap-2">
                     <div>
                       <p className="font-semibold">{d.title}</p>

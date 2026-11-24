@@ -23,8 +23,8 @@ export default function RiwayatPage() {
         {sessions.length > 0 && <button className="btn-ghost text-sm" onClick={exportJson}>Ekspor JSON</button>}
       </div>
       {!sorted.length && <p className="card text-muted">Belum ada sesi tersimpan.</p>}
-      {sorted.map((s) => (
-        <section key={s.id} className="card space-y-2">
+      {sorted.map((s, i) => (
+        <section key={s.id} className="card animate-in space-y-2" style={{ "--d": `${Math.min(i, 8) * 60}ms` } as React.CSSProperties}>
           <div className="flex items-start justify-between gap-2">
             <div>
               <p className="font-semibold">{s.title}</p>

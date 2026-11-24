@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { filterExercises, useExerciseIndex, type ExerciseFilter } from "@/lib/exerciseIndex";
 import { ALL_MUSCLES, muscleLabel } from "@/lib/muscles";
 import { EQUIPMENT_LABELS, LEVEL_LABELS, label } from "@/lib/labels";
+import MotionDemo from "./MotionDemo";
 
 const PAGE = 60;
 
@@ -42,15 +43,12 @@ export default function LibraryBrowser() {
         {results.length > shown ? `, menampilkan ${shown} pertama` : ""}
       </p>
       <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-        {results.slice(0, shown).map((e) => (
-          <li key={e.id}>
-            <Link href={`/latihan/${e.id}`} className="card block h-full overflow-hidden p-0 hover:border-accent">
-              {e.image && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={e.image} alt={e.name} loading="lazy" className="aspect-[4/3] w-full bg-white object-cover" />
-              )}
+        {results.slice(0, shown).map((e, i) => (
+          <li key={e.id} className="animate-in" style={{ "--d": `${Math.min(i % PAGE, 12) * 40}ms` } as React.CSSProperties}>
+            <Link href={`/latihan/${e.id}`} className="card card-hover group block h-full overflow-hidden p-0">
+              <MotionDemo frames={e.frames} name={e.name} compact className="rounded-none rounded-t-2xl" />
               <div className="space-y-1 p-3">
-                <p className="font-semibold leading-tight">{e.name}</p>
+                <p className="font-semibold leading-tight transition group-hover:text-accent">{e.name}</p>
                 <p className="text-xs text-muted">
                   {e.primaryMuscles.map(muscleLabel).join(", ")} · {label(EQUIPMENT_LABELS, e.equipment)}
                 </p>

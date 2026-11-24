@@ -36,3 +36,7 @@ export const IMAGE_BASE =
   "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/";
 
 export const imageUrl = (path: string) => IMAGE_BASE + path;
+
+/** Pencarian video tutorial di YouTube (dibuka di tab/aplikasi YouTube). */
+export const videoSearchUrl = (name: string) =>
+  `https://www.youtube.com/results?search_query=${encodeURIComponent(`${name} exercise proper form`)}`;

@@ -108,18 +108,45 @@ export default function CoachPage() {
           <div className="space-y-2">
             <p className="text-sm text-muted">Coba tanya:</p>
             <div className="flex flex-wrap gap-2">
-              {STARTERS.map((s) => (
-                <button key={s} className="chip hover:border-accent hover:text-accent" onClick={() => send(s)}>{s}</button>
+              {STARTERS.map((s, i) => (
+                <button
+                  key={s}
+                  className="chip animate-pop-in px-3 py-1.5 text-sm hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+                  style={{ "--d": `${i * 70}ms` } as React.CSSProperties}
+                  onClick={() => send(s)}
+                >
+                  {s}
+                </button>
               ))}
             </div>
           </div>
         )}
         {messages.map((m, i) => (
-          <div key={i} className={`max-w-[85%] whitespace-pre-wrap rounded-2xl px-3 py-2 text-sm ${m.role === "user" ? "ml-auto bg-accent text-bg" : "bg-white/5"}`}>
-            {m.content}
+          <div key={i} className={`animate-pop-in flex items-end gap-2 ${m.role === "user" ? "justify-end" : ""}`}>
+            {m.role === "assistant" && (
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-to-br from-accent to-accent2 text-sm">🤖</span>
+            )}
+            <div
+              className={`max-w-[80%] whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
+                m.role === "user"
+                  ? "rounded-br-md bg-gradient-to-br from-accent to-[#7af0c9] text-bg"
+                  : "rounded-bl-md border border-line bg-white/5"
+              }`}
+            >
+              {m.content}
+            </div>
           </div>
         ))}
-        {busy && <div className="w-fit rounded-2xl bg-white/5 px-3 py-2 text-sm text-muted">Coach sedang mengetik…</div>}
+        {busy && (
+          <div className="animate-pop-in flex items-end gap-2">
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-accent to-accent2 text-sm">🤖</span>
+            <div className="flex gap-1 rounded-2xl rounded-bl-md border border-line bg-white/5 px-4 py-3">
+              {[0, 1, 2].map((i) => (
+                <span key={i} className="h-2 w-2 rounded-full bg-accent" style={{ animation: `blink 1.2s ${i * 0.15}s infinite` }} />
+              ))}
+            </div>
+          </div>
+        )}
         <div ref={endRef} />
       </div>
 

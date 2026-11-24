@@ -19,6 +19,7 @@ export function toSummary(e: Exercise): ExerciseSummary {
     primaryMuscles: e.primaryMuscles,
     secondaryMuscles: e.secondaryMuscles,
     image: e.images[0] ? imageUrl(e.images[0]) : null,
+    frames: e.images.map(imageUrl),
   };
 }
 

@@ -2,7 +2,7 @@
 
 Aplikasi web (bisa dibuka di HP) untuk latihan beban:
 
-- **Perpustakaan latihan**: 876 latihan lengkap dengan foto posisi, instruksi, alat, dan otot yang dilatih. Bisa cari dan filter per otot, alat, dan level.
+- **Perpustakaan latihan**: 876 latihan dengan demo gerakan beranimasi (posisi awal ⇄ akhir), tombol video tutorial YouTube, instruksi, alat, dan otot yang dilatih. Bisa cari dan filter per otot, alat, dan level.
 - **Peta otot**: otot utama dan pendukung diwarnai di gambar tubuh depan/belakang. Di beranda jadi heatmap jumlah set per otot minggu ini.
 - **Program**: Full Body Pemula (3x/minggu, dumbel) dan Upper/Lower Menengah (4x/minggu, gym).
 - **Log workout**: catat beban, repetisi, dan centang set. Ada timer istirahat dan estimasi 1RM.
